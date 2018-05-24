@@ -63,11 +63,10 @@ def get_train_data(data='train', day=8, try_test=False):
     if data=='train':
         df = down_sample(df)
         
-    df = concat_file('cnt.h5', 'base', df, starts, stops, data)
-    df = concat_file('cnt.h5', 'app', df, starts, stops, data)
-    df = concat_file('cnt.h5', 'ip', df, starts, stops, data)
-    df = concat_file('cnt.h5', 'device', df, starts, stops, data)
-    df = concat_file('cnt.h5', 'os', df, starts, stops, data)
+    df = concat_file('cnt.h5', '1', df, starts, stops, data)
+    df = concat_file('cnt.h5', '2', df, starts, stops, data)
+    df = concat_file('cnt.h5', '3', df, starts, stops, data)
+
     
     if data == 'private' and try_test == False:
         df = df[df['hour'].isin([13,17,18,21,22])]
@@ -131,11 +130,9 @@ if __name__ == '__main__':
     #df_v2 = get_train_data(data='private')
 
     test_col = \
-    list(pd.read_hdf('./feature/cnt.h5', 'base', stop=1).columns) + \
-    list(pd.read_hdf('./feature/cnt.h5', 'app', stop=1).columns) + \
-    list(pd.read_hdf('./feature/cnt.h5', 'ip', stop=1).columns) + \
-    list(pd.read_hdf('./feature/cnt.h5', 'device',stop=1).columns) + \
-    list(pd.read_hdf('./feature/cnt.h5', 'os',stop=1).columns)
+    list(pd.read_hdf('./feature/cnt.h5', '1', stop=1).columns) + \
+    list(pd.read_hdf('./feature/cnt.h5', '2', stop=1).columns) + \
+    list(pd.read_hdf('./feature/cnt.h5', '3', stop=1).columns) 
     
     target = 'is_attributed'
     categorical = ['app', 'device', 'os', 'channel', 'hour']
