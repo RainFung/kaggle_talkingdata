@@ -24,7 +24,6 @@ if __name__=='__main__':
             if i!=j:
                 features.append([[base_feature[i]],base_feature[j]])
                 features.append([['day', base_feature[i]],base_feature[j]])
-                features.append([['day', 'hour', base_feature[i]],base_feature[j]])
     create_unique_hdf(['app', 'ip', 'device', 'os', 'channel', 'click_id', 'day', 'hour' ,'in_test_hh'], features, '1')
 
     #--------------------------------------------------------------------------------------------------------------------------
@@ -36,7 +35,6 @@ if __name__=='__main__':
                 if i!=j and j!=k and i!=k:
                     features.append([[base_feature[i],base_feature[j]],base_feature[k]])
                     features.append([['day', base_feature[i],base_feature[j]],base_feature[k]])
-                    features.append([['day', 'hour', base_feature[i],base_feature[j]],base_feature[k]])
     print(features)
     create_unique_hdf(['app', 'ip', 'device', 'os', 'channel', 'click_id', 'day', 'hour' ,'in_test_hh'], features, '2')
     #--------------------------------------------------------------------------------------------------------------------------
